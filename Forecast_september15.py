@@ -1,4 +1,5 @@
 #%%
+from statistics import median
 import numpy as np
 
 filename =('https://raw.githubusercontent.com/HAS-Tools-Fall2022'
@@ -23,4 +24,12 @@ week1_prediction = np.mean(flows) - total_change
 week2_prediction = np.mean(flows) - 2*total_change
 week3_prediction = np.mean(flows) - 3*total_change
 print(week1_prediction, ',', week2_prediction, ',', week3_prediction)
+# %%
+#%%
+#findng the median values
+med = np.median(flows)
+medval_1 = med - week1_prediction
+medval_2 = med - week2_prediction
+medval_3 = med - week3_prediction
+print(medval_1, ',', medval_2, ',', medval_3)
 # %%
