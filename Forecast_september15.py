@@ -1,5 +1,4 @@
 #%%
-from statistics import median
 import numpy as np
 
 filename =('https://raw.githubusercontent.com/HAS-Tools-Fall2022'
@@ -12,24 +11,22 @@ flows = np.loadtxt(
 print(flows)
 
 #%%
-#finding the differences betwweeb=n the first week of data and the last week of data and using it to find the forecasting for subsequent weeks
+#finding the differences betwween the first week of data and the last week of data and using it to find the forecasting for subsequent weeks
 len(flows)
-first_day = flows[0]
-last_day = flows[-1]
-total_change = last_day - first_day
-print(total_change)
+first_3_weeks_of_flow = flows[:21]
+last_3_weeks_of_flow = flows[-21:]
+print(first_3_weeks_of_flow)
+print(last_3_weeks_of_flow)
 #%%
 #goal: using numpy to generate prediction variables
-week1_prediction = np.mean(flows) - total_change
-week2_prediction = np.mean(flows) - 2*total_change
-week3_prediction = np.mean(flows) - 3*total_change
-print(week1_prediction, ',', week2_prediction, ',', week3_prediction)
+week1_prediction = np.mean(first_3_weeks_of_flow)
+week2_prediction = np.mean(last_3_weeks_of_flow)
+print(week1_prediction, ',', week2_prediction)
 # %%
 #%%
 #findng the median values
 med = np.median(flows)
-medval_1 = med - week1_prediction
-medval_2 = med - week2_prediction
-medval_3 = med - week3_prediction
-print(medval_1, ',', medval_2, ',', medval_3)
+medval_1 = week1_prediction - med
+medval_2 = week2_prediction - med
+print(medval_1, ',', medval_2)
 # %%
